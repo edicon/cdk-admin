@@ -13,7 +13,7 @@ export class ResponsiveTableComponent implements OnInit {
 	rows: Array<any> = [];
     showResponsiveTableCode;
 
-	@ViewChild(MatPaginator) paginator1: MatPaginator;
+	@ViewChild(MatPaginator, {static: false}) paginator1: MatPaginator;
     pageLength = 0;
     pageSize = 15;
     helpers = ResponsiveTableHelpers;

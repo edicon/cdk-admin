@@ -6,7 +6,7 @@ import { single, multi } from './data';
 	styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent implements OnInit {
-	@ViewChild('ele') el: ElementRef;
+	@ViewChild('ele', {static: false}) el: ElementRef;
 
 	public single: any[];
 	public multi: any[];
@@ -29,7 +29,7 @@ export class PieChartComponent implements OnInit {
 	}
 
 	ngOnChanges(changes) {
-		// if(this.changes && this.changes.height) 
+		// if(this.changes && this.changes.height)
 	}
 	ngDoCheck() {
 		if (this.el.nativeElement.offsetWidth != this.width) {

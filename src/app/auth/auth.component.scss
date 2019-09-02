@@ -4,15 +4,15 @@
     $accent: map-get($theme, accent);
     $warn: map-get($theme, warn);
 
-    
+
     .sidenav{
-        background: mat-color($primary,400);    
+        background: mat-color($primary,400);
         overflow: hidden;
         position: relative;
         width: 250px;
     }
     .drawer{
-        background: mat-color($primary,400);    
+        background: mat-color($primary,400);
         overflow: hidden;
         position: relative;
         width: 80px;
@@ -32,3 +32,6 @@
     }
 }
 
+.mat-drawer-inner-container {
+  overflow: hidden!important;;
+}

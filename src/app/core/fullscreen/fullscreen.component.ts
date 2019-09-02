@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as screenfull from 'screenfull';
+import {Screenfull} from 'screenfull';
 
 @Component({
   selector: 'cdk-fullscreen',
@@ -7,15 +8,15 @@ import * as screenfull from 'screenfull';
   styleUrls: ['./fullscreen.component.scss']
 })
 export class FullscreenComponent implements OnInit {
-	isFullscreen: boolean = false;
+	isFullscreen = false;
   	constructor() { }
 
   	ngOnInit() {
   	}
 
   	toggleFullscreen() {
-	    if (screenfull.enabled) {
-	      	screenfull.toggle();
+	    if ((screenfull as Screenfull).enabled) {
+        (screenfull as Screenfull).toggle();
 	      	this.isFullscreen = !this.isFullscreen;
 	    }
   	}

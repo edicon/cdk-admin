@@ -1,5 +1,5 @@
 
-<perfect-scrollbar style="height: calc(100% - 33px);">
+<perfect-scrollbar class="container" style="height: calc(100% - 33px);">
     <div fxLayout="column" >
         <div *ngIf="!iconOnly" fxLayoutAlign="space-around center" [style.margin]="'10px 0px'" >
           <img width="100" [style.borderRadius]="'50%'" src="./assets/user-image.jpg">
@@ -9,5 +9,5 @@
         </div>
         <cdk-sidemenu-item *ngFor="let menu of menus" [menu]="menu" [iconOnly]="iconOnly"> </cdk-sidemenu-item>
     </div>
-    
+
 </perfect-scrollbar>

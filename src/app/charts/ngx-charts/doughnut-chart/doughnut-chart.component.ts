@@ -8,7 +8,7 @@ import { single, multi } from './data';
 })
 export class DoughnutChartComponent implements OnInit {
 
- @ViewChild('ele') el:ElementRef;
+ @ViewChild('ele', {static: false}) el:ElementRef;
 
   public single: any[];
   public multi: any[];
@@ -27,7 +27,7 @@ export class DoughnutChartComponent implements OnInit {
   public width:number;
 
   constructor() {
-    
+
   }
   ngDoCheck() {
     if(this.el.nativeElement.offsetWidth != this.width) {
@@ -37,10 +37,10 @@ export class DoughnutChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.view = [this.el.nativeElement.offsetWidth, 235];    
-    Object.assign(this, {single, multi})   
+    this.view = [this.el.nativeElement.offsetWidth, 235];
+    Object.assign(this, {single, multi})
   }
-  
+
   onSelect(event) {
     console.log(event);
   }

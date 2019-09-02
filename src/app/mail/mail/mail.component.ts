@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { MediaChange, ObservableMedia } from "@angular/flex-layout";
+import { MediaChange, MediaObserver /* ObservableMedia */} from '@angular/flex-layout';
 
 import { ComposeComponent } from '../compose/compose.component';
 
@@ -15,36 +15,37 @@ export class MailComponent implements OnInit {
     shownMails = [];
     shownMailDetail;
 
-    height: string = '500px';
+    height = '500px';
     constructor(public composeDialog: MatDialog,
               private snackBar: MatSnackBar,
               @Inject('mailService') private service,
-              private media: ObservableMedia) {
+              // private media: ObservableMedia) {
+              private mediaObserver: MediaObserver) {
         this.getMails();
     }
 
     ngOnInit() {
         this.updateHieght();
-        this.media.subscribe((mediaChange: MediaChange) => {
+        this.mediaObserver.media$.subscribe((mediaChange: MediaChange) => {
             this.updateHieght();
         });
     }
 
     updateHieght() {
-        let body = document.body, html = document.documentElement;
-        let h = Math.max( body.scrollHeight, body.offsetHeight, 
+        const body = document.body, html = document.documentElement;
+        const h = Math.max( body.scrollHeight, body.offsetHeight,
                        html.clientHeight, html.scrollHeight, html.offsetHeight ) - 66;
         this.height = h + 'px';
     }
 
     getMails() {
-        this.service.getMails().subscribe((res)=> {
+        this.service.getMails().subscribe((res) => {
             this.shownMails = res;
             this.setMailStatus(false);
         });
     }
     setMailStatus(value) {
-        for (let mail of this.shownMails) {
+        for (const mail of this.shownMails) {
                 mail.checked = value;
             }
     }

@@ -1,4 +1,5 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'cdk-round-progressbar',
@@ -7,7 +8,7 @@ import { Component,Input, OnInit } from '@angular/core';
 })
 export class RoundProgressbarComponent implements OnInit {
 
-    
+
     @Input() current;
     @Input() max;
     @Input() background;
@@ -18,31 +19,46 @@ export class RoundProgressbarComponent implements OnInit {
 
 
     public radius       =    250;
-    public stroke       =    "20" ;
+    public stroke       =    '20' ;
     public semicircle   =    false;
     public rounded      =    true;
     public clockwise    =    false;
     public responsive   =    true;
-    public duration     =    "800";
+    public duration     =    '800';
     public animation    =    'easeInOutQuart';
 
-    constructor() { }
+    constructor( private sanitizer: DomSanitizer) { }
 
     ngOnInit() {
     }
     getOverlayStyle() {
-        let isSemi = this.semicircle;
-        let transform = (isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
+        const isSemi = this.semicircle;
+        const transform = (isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
 
-        return {
-          'top': isSemi ? 'auto' : '50%',
-          'bottom': isSemi ? '5%' : 'auto',
-          'left': '50%',
-          'transform': transform,
-          '-moz-transform': transform,
-          '-webkit-transform': transform,
-          'font-size': this.radius / 7 + 'px'
-        };
+        // TODO: https://stackoverflow.com/questions/43035989/how-to-use-bypasssecuritytruststyle-correctly
+        const useSanitizer = false;
+        if ( useSanitizer ) {
+          return {
+            'top': this.sanitizer.bypassSecurityTrustStyle (isSemi ? 'auto' : '50%'),
+            'bottom': this.sanitizer.bypassSecurityTrustStyle ( isSemi ? '5%' : 'auto'),
+            'left': this.sanitizer.bypassSecurityTrustStyle ('50%'),
+            'transform': this.sanitizer.bypassSecurityTrustStyle (transform), // trnasform
+            '-moz-transform': this.sanitizer.bypassSecurityTrustStyle (transform),
+            '-webkit-transform': this.sanitizer.bypassSecurityTrustStyle (transform),
+            'font-size': this.sanitizer.bypassSecurityTrustStyle ( this.radius / 7 + 'px' )
+          };
+
+        } else {
+          return {
+            'top': isSemi ? 'auto' : '50%',
+            'bottom': isSemi ? '5%' : 'auto',
+            'left': '50%',
+            'transform': transform, // trnasform
+            '-moz-transform': transform,
+            '-webkit-transform': transform,
+            'font-size': this.radius / 7 + 'px'
+          };
+        }
     }
 
 }

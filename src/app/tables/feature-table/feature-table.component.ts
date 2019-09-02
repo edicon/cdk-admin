@@ -21,15 +21,15 @@ export class FeatureTableComponent implements OnInit {
 	dataSource: ExampleDataSource | null;
 	allfeatures = TABLE_HELPERS;
 	constructor() { }
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
-	@ViewChild('filter') filter: ElementRef;
+	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static: false}) sort: MatSort;
+	@ViewChild('filter', {static: false}) filter: ElementRef;
 
 	ngOnInit() {
 	    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
 	    observableFromEvent(this.filter.nativeElement, 'keyup').pipe(
 	        debounceTime(150),
-	        distinctUntilChanged(),)
+	        distinctUntilChanged(), )
 	        .subscribe(() => {
 	          if (!this.dataSource) { return; }
 	          this.dataSource.filter = this.filter.nativeElement.value;
@@ -41,9 +41,9 @@ export class FeatureTableComponent implements OnInit {
 	    if (this.selection.isEmpty()) { return false; }
 
 	    if (this.filter.nativeElement.value) {
-	      return this.selection.selected.length == this.dataSource.renderedData.length;
+	      return this.selection.selected.length === this.dataSource.renderedData.length;
 	    } else {
-	      return this.selection.selected.length == this.exampleDatabase.data.length;
+	      return this.selection.selected.length === this.exampleDatabase.data.length;
 	    }
 	}
 
