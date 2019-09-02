@@ -73,3 +73,30 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 .mat-drawer-inner-container {
   overflow: hidden!important;
 }
+
+## Dev & Running
+```bash
+# add environment.staging.ts for Prod Debugging
+$ ng serve --configuration==staging
+```
+
+```json: tsconfig.json
+{
+  "compilerOptions": {
+  "paths": {
+        "@app/*": ["app/*"],
+        "@env/*": ["environments/*"],
+        "@core/*": ["app/core/*"],
+        "@shared/*": ["app/shared/*"],
+        "@layout/*": ["app/layout/*"],
+        "@mvoca/*": ["app/layout/home-layout/*"],
+        "@lms/*": ["app/layout/lms-layout/*"],
+        "@admin/*": ["app/layout/admin-layout/*"],
+        "@teacher/*": ["app/layout/teacher-layout/*"],
+        "@student/*": ["app/layout/student-layout/*"],
+        "@video/*": ["app/layout/video-layout/*"],
+        "@modules/*": ["app/modules/*"],
+    },
+  }
+}
+```  
