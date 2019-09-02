@@ -71,5 +71,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 7. Side Menu Scroll
 // ::ng-deep .mat-drawer-inner-container {
 .mat-drawer-inner-container {
-  overflow: hidden!important;;
+  overflow: hidden!important;
 }

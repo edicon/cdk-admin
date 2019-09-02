@@ -1,7 +1,7 @@
 
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class ChatsService {
   }
 
   updateChatMessage(key: string, value: any) {
-    console.log('key',key,'value',value);
+    console.log('key', key, 'value', value);
     this.chatsRef.update(key, {messages: value.messages});
   }
 

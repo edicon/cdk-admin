@@ -26,9 +26,9 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ChatsService } from './chats.service';
 import { environment } from '../../environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 export function highlightJsFactory(): any {
   hljs.registerLanguage('typescript', hljsTypescript);
   return hljs;
@@ -76,5 +76,3 @@ export function highlightJsFactory(): any {
 
 })
 export class ChatsModule { }
-
-
