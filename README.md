@@ -75,12 +75,51 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 }
 
 ## Dev & Running
-```bash
-# add environment.staging.ts for Prod Debugging
-$ ng serve --configuration==staging
+```json angular.json
+"build": {
+  "configurations": {
+    "production": {
+      "fileReplacements": [
+        {
+          "replace": "src/environments/environment.ts",
+          "with": "src/environments/environment.prod.ts"
+        }
+      ]
+    },
+    "staging": {
+      "fileReplacements": [
+        {
+          "replace": "src/environments/environment.ts",
+          "with": "src/environments/environment.staging.ts"
+        }
+      ]
+    }
+  }
+}
+"serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "options": {
+    "browserTarget": "cd-admin-v2:build"
+  },
+  "configurations": {
+    "prod": {
+      "browserTarget": "cd-admin-v2:build:prod"
+    },
+    "staging": {
+      "browserTarget": "cd-admin-v2:build:staging"
+    }
+  }
+},
 ```
 
-```json: tsconfig.json
+```bash
+# Add environment.staging.ts for Prod Debugging
+$ ng serve --configuration==staging
+# Proxy Config
+$ ng serve --proxy-config proxy.conf.json  
+```
+
+```json tsconfig.json
 {
   "compilerOptions": {
   "paths": {

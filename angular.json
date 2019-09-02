@@ -34,6 +34,14 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
             }
           }
         },
@@ -45,6 +53,9 @@
           "configurations": {
             "prod": {
               "browserTarget": "cd-admin-v2:build:prod"
+            },
+            "staging": {
+              "browserTarget": "cd-admin-v2:build:staging"
             }
           }
         },
